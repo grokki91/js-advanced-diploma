@@ -18,9 +18,8 @@ export default class GameController {
     console.log(myTeam);
     const botTeam = generateTeam([new Undead(1), new Vampire(1), new Daemon(1)], 2, 3);
     console.log(botTeam);
-    const my = generateRandomPositions(myTeam.characters, 8);
-    console.log(my);
-    const bot = generateRandomPositions(botTeam.characters, 8);
+    const my = generateRandomPositions(myTeam.characters, 'i');
+    const bot = generateRandomPositions(botTeam.characters, 'bot');
     this.gamePlay.redrawPositions(my);
     this.gamePlay.redrawPositions(bot);
 

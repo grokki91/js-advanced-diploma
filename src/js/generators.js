@@ -38,18 +38,41 @@ export function generateTeam(allowedTypes, maxLevel, characterCount) {
   return new Team(arrTeam);
 }
 
-export function generateRandomPositions(team, num) {
+// Определяется месторасположение персонажа в зависимости от игрока ('bot' или игрок)
+export default function сreatePosition(player) {
+  const randomArrMy = [];
+  const randomArrBot = [];
+  document.querySelectorAll('.cell').forEach((el, index) => {
+    const topLeft = el.classList.contains('map-tile-top-left');
+    const left = el.classList.contains('map-tile-left');
+    const bottomLeft = el.classList.contains('map-tile-bottom-left');
+    const topRight = el.classList.contains('map-tile-top-right');
+    const right = el.classList.contains('map-tile-right');
+    const bottomRight = el.classList.contains('map-tile-bottom-right');
+
+    if (topLeft || left || bottomLeft) {
+      randomArrMy.push(index, index + 1);
+    } else if (topRight || right || bottomRight) {
+      randomArrBot.push(index, index - 1);
+    }
+  });
+
+  if (player !== 'bot') {
+    return randomArrMy[Math.floor(Math.random() * randomArrMy.length)];
+  }
+  return randomArrBot[Math.floor(Math.random() * randomArrBot.length)];
+}
+
+export function generateRandomPositions(team, player) {
   const positionArr = [];
   const characterArray = [];
-  const createPosition = () => Math.floor(Math.random() * num);
 
   while (positionArr.length < team.length) {
-    const position = createPosition();
+    const position = сreatePosition(player);
     if (!positionArr.includes(position)) {
       characterArray.push(new PositionedCharacter(team[positionArr.length], position));
       positionArr.push(position);
     }
   }
-  console.log(characterArray);
   return characterArray;
 }
