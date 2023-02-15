@@ -19,6 +19,10 @@ export default class Character {
     this.defence = 0;
     this.health = 50;
     this.type = type;
+    this.type = ['swordsman', 'bowman', 'magician', 'daemon', 'undead', 'vampire'];
     // TODO: выбросите исключение, если кто-то использует "new Character()"
+    if (new.target === Character) {
+      throw new Error('Нельзя создать персонажа через базовый класс');
+    }
   }
 }

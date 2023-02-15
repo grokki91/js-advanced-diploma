@@ -13,4 +13,12 @@
  * */
 export default class Team {
   // TODO: write your logic here
+  constructor(members) {
+    this.members = members;
+  }
+
+  get characters() {
+    // return this.members.map((item) => item.type);
+    return this.members;
+  }
 }
