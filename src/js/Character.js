@@ -24,5 +24,8 @@ export default class Character {
     if (new.target === Character) {
       throw new Error('Нельзя создать персонажа через базовый класс');
     }
+    if (this.level > 4) {
+      this.level = 4;
+    }
   }
 }

@@ -1,4 +1,4 @@
-const themes = {
+export const themes = {
   prairie: 'prairie',
   desert: 'desert',
   arctic: 'arctic',

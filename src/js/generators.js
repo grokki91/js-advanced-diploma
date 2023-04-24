@@ -15,7 +15,8 @@ export function* characterGenerator(allowedTypes, maxLevel = 1) {
   const randomLevel = () => Math.floor(Math.random() * maxLevel + 1);
   const randomCharacter = () => {
     const hero = allowedTypes[Math.floor(Math.random() * (allowedTypes.length - 1))];
-    hero.level = randomLevel();
+    const currentLevel = randomLevel();
+    hero.level = currentLevel > 4 ? 4 : currentLevel;
     return hero;
   };
   yield randomCharacter();
@@ -25,7 +26,7 @@ export function* characterGenerator(allowedTypes, maxLevel = 1) {
  * Формирует массив персонажей на основе characterGenerator
  * @param allowedTypes массив классов
  * @param maxLevel максимальный возможный уровень персонажа
- * @param characterCount количество персонажей, которое нужно сформировать
+ * @param characterCount ко0личество персонажей, которое нужно сформировать
  * @returns экземпляр Team, хранящий экземпляры персонажей. Количество персонажей в команде - characterCount
  * */
 export function generateTeam(allowedTypes, maxLevel, characterCount) {
@@ -39,7 +40,7 @@ export function generateTeam(allowedTypes, maxLevel, characterCount) {
 }
 
 // Определяется месторасположение персонажа в зависимости от игрока ('bot' или игрок)
-export default function сreatePosition(player) {
+export function сreatePosition(player) {
   const randomArrMy = [];
   const randomArrBot = [];
   document.querySelectorAll('.cell').forEach((el, index) => {
