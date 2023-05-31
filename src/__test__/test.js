@@ -23,9 +23,16 @@ describe('Painting characters', () => {
     });
   });
   test('Generate new character infinitely', () => {
-    const types = [new Swordsman(1), new Bowman(1)];
-    for (let i = 0; i < 4; i += 1) {
-      expect(characterGenerator(types, 5).next().done).toBeFalsy();
+    const types = [new Swordsman(5), new Bowman(1)];
+    const generator = characterGenerator(types, 5);
+    let index = 0;
+    /* eslint-disable-next-line */
+    for (const character of generator) {
+      if (index === 1000) {
+        break;
+      }
+      index += 1;
+      expect(['swordsman', 'bowman'].includes(character.type)).toBe(true);
     }
   });
   test('Check correct generation quantity of characters', () => {

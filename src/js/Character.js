@@ -18,6 +18,8 @@ export default class Character {
     this.attack = 0;
     this.defence = 0;
     this.health = 50;
+    this.step = 0;
+    this.range = 0;
     this.type = type;
     this.type = ['swordsman', 'bowman', 'magician', 'daemon', 'undead', 'vampire'];
     // TODO: выбросите исключение, если кто-то использует "new Character()"
